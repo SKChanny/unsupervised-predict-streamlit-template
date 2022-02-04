@@ -194,37 +194,7 @@ def main():
             #ax1.axis("off")
             #st.pyplot(fig1)
 
-        # ---------------------- Wordclouds -----------------------------
-        if st.button('Movie_titles'):
-            st.write('##### WordCloud for Movie_titles')
-            movies_word = movies['title'] = movies['title'].astype('str')
-            #dove_mask = np.array(Image.open('wolf1.jpg'))
-            movies_wordcloud = ' '.join(movies_word)
-            title_wordcloud = WordCloud(stopwords = STOPWORDS,
-                            background_color = 'White',
-                            height = 1200,
-                            width = 1900).generate(movies_wordcloud)
-            # Display the generated image:
-            fig1, ax1 = plt.subplots()
-            ax1.imshow(title_wordcloud, interpolation='bilinear')
-            ax1.axis("off")
-            st.pyplot(fig1)
-
-        if st.button('Movie_genres'):
-            st.write('##### WordCloud for Movie_genres')
-            movies['genres'] = movies['genres'].str.replace('|',' ')
-            movies_word = movies['genres'] = movies['genres'].astype('str')
-            #dove_mask = np.array(Image.open('wolf1.jpg'))
-            movies_wordcloud = ' '.join(movies_word)
-            title_wo = WordCloud(
-                      colormap='winter',
-                      background_color = 'White',
-                      min_font_size=10).generate(movies_wordcloud)
-            # Display the generated image:
-            fig1, ax1 = plt.subplots()
-            ax1.imshow(title_wo, interpolation='bilinear')
-            ax1.axis("off")
-            st.pyplot(fig1)
+       
         if st.button('Top_20 actors'):
             st.title("Top 20 Actors Featured in the IMDB Database")
             image = Image.open('actors.png')
