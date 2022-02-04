@@ -43,15 +43,8 @@ from PIL import Image
 
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
-train = pd.read_csv('resources/data/train.csv', nrows = 2000)
-test = pd.read_csv('resources/data/test.csv', nrows = 2000)
-gen_scores = pd.read_csv('resources/data/genome_scores.csv', nrows = 2000)
-gen_tags = pd.read_csv('resources/data/genome_tags.csv', nrows = 2000)
-imd = pd.read_csv('resources/data/imdb_data.csv', nrows = 2000)
-links = pd.read_csv('resources/data/links.csv', nrows = 2000)
-movies = pd.read_csv('resources/data/movies.csv', nrows = 2000)
-tags = pd.read_csv('resources/data/tags.csv', nrows = 2000)
-ratings_df = pd.read_csv('resources/data/ratings.csv', nrows = 2000)
+movies = pd.read_csv('resources/data/movies.csv')
+ratings_df = pd.read_csv('resources/data/ratings.csv')
 # App declaration
 def main():
 
@@ -149,7 +142,7 @@ def main():
         st.title("Exploratory Data Analysis")
         option = st.selectbox(
             'Which Raw Data would you like to Explore?',
-            ('train', 'test', 'gen_scores','gen_tags','imd','links','movies','tags','ratings_df'))
+            ('movies','ratings_df'))
         st.write('You selected:', option)
 
         if 'number_of_rows' not in st.session_state or 'type' not in st.session_state:
@@ -164,24 +157,12 @@ def main():
 
         decrement = st.button('Show fewer columns👇')
         if decrement:
-            st.session_state.number_of_rows -= 10
+            st.session_state.number_of_rows -= 2
 
-        if option == 'train':
-            st.table(train.head(st.session_state['number_of_rows']))
-        if option == 'test':
-            st.table(test.head(st.session_state['number_of_rows']))
-        if option == 'gen_scores':
-            st.table(gen_scores.head(st.session_state['number_of_rows']))
-        if option == 'gen_tags':
-            st.table(gen_tags.head(st.session_state['number_of_rows']))
-        if option == 'imd':
-            st.table(imd.head(st.session_state['number_of_rows']))
-        if option == 'links':
-            st.table(links.head(st.session_state['number_of_rows']))
+        
         if option == 'movies':
             st.table(movies.head(st.session_state['number_of_rows']))
-        if option == 'tags':
-            st.table(tags.head(st.session_state['number_of_rows']))
+       
         if option == 'ratings_df':
             st.table(ratings_df.head(st.session_state['number_of_rows']))
         # ---------------------------------------------------------------
